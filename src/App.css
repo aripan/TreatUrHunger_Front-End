@@ -1,0 +1,68 @@
+body {
+  /* background: linear-gradient(90deg, #9cb7d6, #83c0c0, #e4c7d3); */
+  background-color: rgb(225, 216, 233);
+}
+
+/* DishDetailComponent */
+.clickedItem {
+  background-color: rgb(225, 216, 233);
+  font-size: 1.2rem;
+  text-align: justify;
+  font-style: italic;
+}
+
+.rating {
+  display: flex;
+}
+
+.commentsOnDish {
+  font-family: "Acme", sans-serif;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+
+/* 
+.dishTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.row-content {
+  margin: 0px auto;
+  padding: 50px 0px 50px 0px;
+  border-bottom: 1px ridge;
+  min-height: 400px;
+}
+
+.footer {
+  background-color: #d1c4e9;
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+}
+
+.jumbotron {
+  padding: 70px 30px 70px 30px;
+  margin: 0px auto;
+  background: #9575cd;
+  color: floralwhite;
+}
+
+address {
+  font-size: 90%;
+  margin: 0px;
+  color: #0f0f0f;
+}
+
+.navbar-dark {
+  background-color: #7a4be7;
+}
+
+.mr-auto,
+.row-header h1 {
+  font-family: "Lobster", cursive;
+} */
