@@ -21,6 +21,13 @@ body {
   font-size: 1.5rem;
 }
 
+/* MenuComponent */
+.dishName {
+  color: rgb(44, 44, 204);
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+
 /* 
 .dishTitle {
   font-weight: 700;
