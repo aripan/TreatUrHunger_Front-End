@@ -1,6 +1,13 @@
+/* 
+
+Body 
+----
+
+*/
 body {
   /* background: linear-gradient(90deg, #9cb7d6, #83c0c0, #e4c7d3); */
   /* background-color: rgb(225, 216, 233); */
+
   background: linear-gradient(to left, #757f9a, #d7dde8);
 }
 
@@ -58,14 +65,6 @@ HeaderComponent
   margin: 0px auto;
   padding: 0px auto;
 }
-
-/* .row-content {
-  margin: 0px auto;
-  padding: 50px 0px 50px 0px;
-  border-bottom: 1px ridge;
-  min-height: 400px;
- 
-} */
 
 .jumbotron {
   padding: 70px 30px 70px 30px;
