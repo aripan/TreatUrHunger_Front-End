@@ -1,9 +1,16 @@
 body {
   /* background: linear-gradient(90deg, #9cb7d6, #83c0c0, #e4c7d3); */
-  background-color: rgb(225, 216, 233);
+  /* background-color: rgb(225, 216, 233); */
+  background: linear-gradient(to left, #757f9a, #d7dde8);
 }
 
-/* DishDetailComponent */
+/* 
+
+ DishDetailComponent 
+ -------------------
+
+*/
+
 .clickedItem {
   background-color: rgb(225, 216, 233);
   font-size: 1.2rem;
@@ -21,7 +28,13 @@ body {
   font-size: 1.5rem;
 }
 
-/* MenuComponent */
+/* 
+
+MenuComponent 
+-------------
+
+*/
+
 .dishName {
   color: rgb(44, 44, 204);
   font-weight: 700;
@@ -29,9 +42,16 @@ body {
 }
 
 /* 
-.dishTitle {
-  font-weight: 700;
-  font-size: 1.5rem;
+
+HeaderComponent 
+---------------
+
+*/
+
+.navbar-dark {
+  /* background-color: #7a4be7; */
+  /* background-color: #a19a64; */
+  background: linear-gradient(to right, #555353, #4a72a3);
 }
 
 .row-header {
@@ -39,37 +59,63 @@ body {
   padding: 0px auto;
 }
 
-.row-content {
+/* .row-content {
   margin: 0px auto;
   padding: 50px 0px 50px 0px;
   border-bottom: 1px ridge;
   min-height: 400px;
-}
-
-.footer {
-  background-color: #d1c4e9;
-  margin: 0px auto;
-  padding: 20px 0px 20px 0px;
-}
+ 
+} */
 
 .jumbotron {
   padding: 70px 30px 70px 30px;
   margin: 0px auto;
-  background: #9575cd;
+  /* background: #9575cd; */
+  /* background: linear-gradient(to right, #acaaaa, #6987ac); */
+  background: linear-gradient(to left, #918d8d, #6987ac);
   color: floralwhite;
-}
-
-address {
-  font-size: 90%;
-  margin: 0px;
-  color: #0f0f0f;
-}
-
-.navbar-dark {
-  background-color: #7a4be7;
 }
 
 .mr-auto,
 .row-header h1 {
   font-family: "Lobster", cursive;
-} */
+}
+
+.row-header p,
+.nav-link {
+  font-family: "Righteous", cursive;
+  text-align: justify;
+}
+
+/* 
+
+FooterComponent
+--------------- 
+
+*/
+
+.footer {
+  /* background-color: #d1c4e9; */
+  background: linear-gradient(to right, #555353, #4a72a3);
+  margin: 0px auto;
+  padding: 20px 0px 20px 0px;
+  color: #fff;
+  font-family: "Righteous", cursive;
+}
+
+.list-unstyled a,
+address a {
+  color: rgb(162, 177, 177);
+}
+
+.list-unstyled a:hover,
+address a:hover {
+  color: #fff;
+}
+
+/* 
+.dishTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+*/
