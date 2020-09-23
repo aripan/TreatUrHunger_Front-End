@@ -4,16 +4,21 @@ Body
 ----
 
 */
+
 body {
   /* background: linear-gradient(90deg, #9cb7d6, #83c0c0, #e4c7d3); */
   /* background-color: rgb(225, 216, 233); */
 
   background: linear-gradient(to left, #757f9a, #d7dde8);
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
 }
 
 .breadcrumb-fontStyle {
   font-family: "Pacifico", cursive;
 }
+
 /* 
 
  DishDetailComponent 
@@ -64,20 +69,6 @@ HeaderComponent
   background: linear-gradient(to right, #555353, #4a72a3);
 }
 
-.row-header {
-  margin: 0px auto;
-  padding: 0px auto;
-}
-
-.jumbotron {
-  padding: 70px 30px 70px 30px;
-  margin: 0px auto;
-  /* background: #9575cd; */
-  /* background: linear-gradient(to right, #acaaaa, #6987ac); */
-  background: linear-gradient(to left, #918d8d, #6987ac);
-  color: floralwhite;
-}
-
 .mr-auto,
 .row-header h1 {
   font-family: "Lobster", cursive;
@@ -88,6 +79,31 @@ HeaderComponent
 .register-link {
   font-family: "Righteous", cursive;
   text-align: justify;
+}
+
+/* 
+
+IntroComponent 
+---------------
+
+*/
+
+.row-header {
+  margin: 0px auto;
+  padding: 0px auto;
+}
+
+.introImg {
+  mask-image: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+}
+
+.jumbotron {
+  padding: 70px 30px 70px 30px;
+  margin: 0px auto;
+  /* background: #9575cd; */
+  /* background: linear-gradient(to right, #acaaaa, #6987ac); */
+  background: linear-gradient(to left, #918d8d, #6987ac);
+  color: floralwhite;
 }
 
 /* 
@@ -143,19 +159,17 @@ address a:hover {
 }
 
 /* 
-.dishTitle {
-  font-weight: 700;
-  font-size: 1.5rem;
-}
-*/
 
-/* RegisterComponent */
+RegisterComponent
+------------------
+
+*/
 
 .register {
   width: 60%;
   min-width: 300px;
   align-items: center;
-  margin: 0 auto;
+  margin: 20px auto;
   border-radius: 5px;
   border: 1px solid;
   border-color: lightgray rgb(119, 111, 111);
@@ -198,3 +212,15 @@ address a:hover {
   margin-top: 0.8rem;
   border-color: #a88734 #9c7e31 #846a29;
 }
+
+/* FavoriteComponent */
+.favorites-row {
+  font-family: "Lobster", cursive;
+}
+
+/* 
+.dishTitle {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+*/

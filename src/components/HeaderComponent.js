@@ -6,7 +6,6 @@ import {
   NavbarToggler,
   Collapse,
   NavItem,
-  Jumbotron,
   Button,
   Modal,
   ModalHeader,
@@ -61,7 +60,7 @@ class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        <Navbar dark expand="md">
+        <Navbar dark expand="md" className="sticky-top">
           <div className="container">
             <NavbarToggler onClick={this.toggleNav} />
             <NavbarBrand className="mr-auto" href="/">
@@ -90,6 +89,11 @@ class Header extends Component {
                   </NavLink>
                 </NavItem>
                 <NavItem>
+                  <NavLink className="nav-link" to="/favorites">
+                    <span className="fa fa-heart fa-lg"></span> My Favorites
+                  </NavLink>
+                </NavItem>
+                <NavItem>
                   <NavLink className="nav-link" to="/contactus">
                     <span className="fa fa-address-card fa-lg"></span> Contact
                     Us
@@ -112,27 +116,7 @@ class Header extends Component {
             </Collapse>
           </div>
         </Navbar>
-        <Jumbotron>
-          <div className="container">
-            <div className="row row-header">
-              <div className="col-12 col-sm-6">
-                <h1>Treat Ur Hunger</h1>
-                <p>
-                  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed
-                  diam nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem
-                  ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-                  nonumy eirmod tempor invidunt ut labore et dolore magna
-                  aliquyam erat, sed diam voluptua. At vero eos et accusam et
-                  justo duo dolores et ea rebum. Stet clita kasd gubergren, no
-                  sea takimata sanctus est Lorem ipsum dolor sit amet.
-                </p>
-              </div>
-            </div>
-          </div>
-        </Jumbotron>
+        {/* Jumbotron */}
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
           <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
           <ModalBody>

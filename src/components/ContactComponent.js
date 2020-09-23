@@ -2,11 +2,13 @@ import React from "react";
 import { Breadcrumb, BreadcrumbItem, FormFeedback } from "reactstrap";
 import { Link } from "react-router-dom";
 import FormComponent from "./FormComponent";
+import Intro from "./IntroComponent";
 
 const Contact = (props) => {
   return (
     <div className="container">
       <div className="row">
+        <Intro />
         <Breadcrumb className="breadcrumb-fontStyle">
           <BreadcrumbItem>
             <Link to="/home">Home</Link>

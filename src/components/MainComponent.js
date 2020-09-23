@@ -7,6 +7,7 @@ import Home from "./HomeComponent";
 import About from "./AboutComponent";
 import Contact from "./ContactComponent";
 import Register from "./RegisterComponent";
+import Favorites from "./FavoriteComponent";
 import { Switch, Route, Redirect } from "react-router-dom";
 import { DISHES } from "../shared/dishes";
 import { COMMENTS } from "../shared/comments";
@@ -55,6 +56,7 @@ class Main extends Component {
       <div>
         <Header />
         <Switch>
+          <Route path="/favorites" component={Favorites} />
           <Route path="/register" component={Register} />
           <Route path="/home" component={HomePage} />
           <Route

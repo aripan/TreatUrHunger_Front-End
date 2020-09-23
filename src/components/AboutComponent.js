@@ -1,4 +1,5 @@
 import React from "react";
+import Intro from "./IntroComponent";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -36,6 +37,7 @@ const About = (props) => {
   return (
     <div className="container">
       <div className="row">
+        <Intro />
         <Breadcrumb className="breadcrumb-fontStyle ">
           <BreadcrumbItem>
             <Link to="/home">Home</Link>

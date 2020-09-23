@@ -7,6 +7,7 @@ import {
   CardTitle,
   CardSubtitle,
 } from "reactstrap";
+import Intro from "./IntroComponent";
 
 function RenderCard({ item }) {
   return (
@@ -26,6 +27,7 @@ function RenderCard({ item }) {
 const Home = (props) => {
   return (
     <div className="container">
+      <Intro />
       <div className="row align-items-start mt-2 mb-2">
         <div className="col-12 col-md m-1">
           <RenderCard item={props.dish} />

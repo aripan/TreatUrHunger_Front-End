@@ -8,6 +8,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import Intro from "./IntroComponent";
 
 function RenderMenuItem({ dish }) {
   return (
@@ -34,6 +35,7 @@ const Menu = (props) => {
   return (
     <div className="container">
       <div className="row">
+        <Intro />
         <Breadcrumb className="breadcrumb-fontStyle">
           <BreadcrumbItem>
             <Link to="/home">Home</Link>
@@ -45,7 +47,7 @@ const Menu = (props) => {
           <hr />
         </div>
       </div>
-      <div className="row mb-2">{menu}</div>
+      <div className="row mb-2 ">{menu}</div>
     </div>
   );
 };

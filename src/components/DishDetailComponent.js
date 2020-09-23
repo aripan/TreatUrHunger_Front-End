@@ -9,6 +9,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
+import Intro from "./IntroComponent";
 
 const RenderDish = ({ itemDetails }) => {
   if (itemDetails) {
@@ -69,6 +70,7 @@ const DishDetail = (props) => {
     return (
       <div className="container">
         <div className="row">
+          <Intro />
           <Breadcrumb className="breadcrumb-fontStyle">
             <BreadcrumbItem>
               <Link to="/home">Home</Link>
@@ -83,7 +85,7 @@ const DishDetail = (props) => {
             <hr />
           </div>
         </div>
-        <div className="row">
+        <div className="row m-2">
           <div className="col-12 col-md-5 m-1">
             <RenderDish itemDetails={props.dish} />
           </div>
