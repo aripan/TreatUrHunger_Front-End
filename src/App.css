@@ -11,6 +11,9 @@ body {
   background: linear-gradient(to left, #757f9a, #d7dde8);
 }
 
+.breadcrumb-fontStyle {
+  font-family: "Pacifico", cursive;
+}
 /* 
 
  DishDetailComponent 
@@ -81,7 +84,8 @@ HeaderComponent
 }
 
 .row-header p,
-.nav-link {
+.nav-link,
+.register-link {
   font-family: "Righteous", cursive;
   text-align: justify;
 }
@@ -91,6 +95,9 @@ HeaderComponent
 AboutComponent
 --------------- 
 
+ContactComponent
+----------------- 
+
 */
 
 .row-content {
@@ -98,6 +105,15 @@ AboutComponent
   padding: 50px 0px 50px 0px;
   border-bottom: 1px ridge;
   min-height: 400px;
+}
+
+.contact-email {
+  color: rgb(49, 43, 43);
+}
+
+.row-content address {
+  font-size: 16px;
+  font-weight: 600;
 }
 
 /* 
@@ -111,7 +127,7 @@ FooterComponent
   /* background-color: #d1c4e9; */
   background: linear-gradient(to right, #555353, #4a72a3);
   margin: 0px auto;
-  padding: 20px 0px 20px 0px;
+  padding: 20px 0px;
   color: #fff;
   font-family: "Righteous", cursive;
 }
@@ -132,3 +148,53 @@ address a:hover {
   font-size: 1.5rem;
 }
 */
+
+/* RegisterComponent */
+
+.register {
+  width: 60%;
+  min-width: 300px;
+  align-items: center;
+  margin: 0 auto;
+  border-radius: 5px;
+  border: 1px solid;
+  border-color: lightgray rgb(119, 111, 111);
+  padding: 1.5rem;
+}
+
+.register > h1 {
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.register > form {
+  width: 60%;
+  min-width: 250px;
+  margin: 0 auto;
+}
+
+.register > form > h5 {
+  margin-bottom: 0.4rem;
+}
+
+.register > form > input {
+  height: 2.4rem;
+  margin-bottom: 0.8rem;
+  background-color: transparent;
+  width: 100%;
+}
+
+.register > p {
+  font-size: 1rem;
+  margin: 1rem auto;
+}
+
+.register__button {
+  background: #ddb143;
+  border-radius: 2px;
+  width: 100%;
+  height: 2.4rem;
+  border: 1px solid;
+  margin-top: 0.8rem;
+  border-color: #a88734 #9c7e31 #846a29;
+}

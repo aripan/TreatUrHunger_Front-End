@@ -34,7 +34,7 @@ const Menu = (props) => {
   return (
     <div className="container">
       <div className="row">
-        <Breadcrumb>
+        <Breadcrumb className="breadcrumb-fontStyle">
           <BreadcrumbItem>
             <Link to="/home">Home</Link>
           </BreadcrumbItem>
@@ -45,7 +45,7 @@ const Menu = (props) => {
           <hr />
         </div>
       </div>
-      <div className="row">{menu}</div>
+      <div className="row mb-2">{menu}</div>
     </div>
   );
 };

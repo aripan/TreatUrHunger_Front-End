@@ -36,7 +36,7 @@ const About = (props) => {
   return (
     <div className="container">
       <div className="row">
-        <Breadcrumb>
+        <Breadcrumb className="breadcrumb-fontStyle ">
           <BreadcrumbItem>
             <Link to="/home">Home</Link>
           </BreadcrumbItem>

@@ -42,7 +42,7 @@ const RenderComments = ({ comments }) => {
                     {Array(comment.rating)
                       .fill()
                       .map((_, i) => (
-                        <span role="img">⭐</span>
+                        <span>&#x2B50;</span>
                       ))}
                   </p>
 
@@ -69,7 +69,7 @@ const DishDetail = (props) => {
     return (
       <div className="container">
         <div className="row">
-          <Breadcrumb>
+          <Breadcrumb className="breadcrumb-fontStyle">
             <BreadcrumbItem>
               <Link to="/home">Home</Link>
             </BreadcrumbItem>
