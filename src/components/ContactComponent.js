@@ -1,7 +1,7 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem, FormFeedback } from "reactstrap";
 import { Link } from "react-router-dom";
-import FormComponent from "./FormComponent";
+import Form from "./FormComponent";
 import Intro from "./IntroComponent";
 
 const Contact = (props) => {
@@ -73,7 +73,7 @@ const Contact = (props) => {
         </div>
       </div>
       <div className="row row-content">
-        <FormComponent />
+        <Form />
       </div>
     </div>
   );
