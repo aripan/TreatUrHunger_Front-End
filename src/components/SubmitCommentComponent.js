@@ -34,14 +34,20 @@ class SubmitComment extends Component {
   }
 
   handleComment(values) {
-    alert(
-      "Author: " +
-        JSON.stringify(values.author) +
-        " Rating: " +
-        JSON.stringify(values.rating) +
-        " Comment: " +
-        JSON.stringify(values.comment)
+    this.props.addComment(
+      this.props.dishId,
+      values.rating,
+      values.author,
+      values.comment
     );
+    // alert(
+    //   "Author: " +
+    //     JSON.stringify(values.author) +
+    //     " Rating: " +
+    //     JSON.stringify(values.rating) +
+    //     " Comment: " +
+    //     JSON.stringify(values.comment)
+    // );
     this.toggleModal();
   }
 
