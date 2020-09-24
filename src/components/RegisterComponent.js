@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Register() {
   const history = useHistory();
@@ -10,8 +10,17 @@ function Register() {
 
   const register = (e) => {
     e.preventDefault();
-    alert("Username: " + username + " Password: " + password);
-    history.push("/");
+    if (
+      firstName.length < 1 ||
+      lastName.length < 1 ||
+      username.length < 1 ||
+      password.length < 1
+    ) {
+      alert("SORRY!, Insufficient Data");
+    } else {
+      alert("Username: " + username + " Password: " + password);
+      history.push("/");
+    }
   };
   return (
     <div className="register">

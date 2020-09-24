@@ -175,7 +175,7 @@ const Form = () => {
                 id="message"
                 name="message"
                 rows="12"
-                className="form-control"
+                className="form-control feedback-form"
               />
             </Col>
           </Row>

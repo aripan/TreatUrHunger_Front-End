@@ -10,6 +10,7 @@ import {
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
+import SubmitComment from "./SubmitCommentComponent";
 
 const RenderDish = ({ itemDetails }) => {
   if (itemDetails) {
@@ -60,6 +61,7 @@ const RenderComments = ({ comments }) => {
             );
           })}
         </ul>
+        <SubmitComment />
       </div>
     );
   } else return <div></div>;

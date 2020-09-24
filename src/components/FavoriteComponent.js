@@ -1,5 +1,5 @@
 import React from "react";
-import { Media, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
+import { Media, Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
 

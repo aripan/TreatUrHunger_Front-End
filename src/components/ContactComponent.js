@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbItem, FormFeedback } from "reactstrap";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import Form from "./FormComponent";
 import Intro from "./IntroComponent";
@@ -43,8 +43,17 @@ const Contact = (props) => {
             </a>
           </address>
         </div>
-        <div className="col-12 col-sm-6 offset-sm-1">
+        {/* <div className="col-12 col-sm-6 offset-sm-1">
           <h5>Map of our Location</h5>
+        </div> */}
+        <div className="col-12 col-sm-6 offset-sm-1 feedbackImg">
+          <img
+            src="/assets/images/thank-you.jpg"
+            alt="Feedback"
+            width="100%"
+            height="auto"
+            className="d-none d-sm-block d-md-block"
+          />
         </div>
         <div className="col-12 col-sm-11 offset-sm-1">
           <div className="btn-group" role="group">

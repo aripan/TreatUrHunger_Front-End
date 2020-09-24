@@ -132,6 +132,10 @@ ContactComponent
   font-weight: 600;
 }
 
+.feedbackImg {
+  mask-image: linear-gradient(rgba(0, 0, 0, 0.8), transparent);
+}
+
 /* 
 
 FooterComponent
