@@ -5,6 +5,8 @@ import { Promotions } from "./promotionReducer";
 import { Leaders } from "./leaderReducer";
 import thunk from "redux-thunk";
 import logger from "redux-logger";
+import { createForms } from "react-redux-form";
+import { InitialFeedback } from "./forms";
 
 export const ConfigureStore = () => {
   const store = createStore(
@@ -13,6 +15,9 @@ export const ConfigureStore = () => {
       comments: Comments,
       promotions: Promotions,
       leaders: Leaders,
+      ...createForms({
+        feedback: InitialFeedback,
+      }),
     }),
     compose(
       applyMiddleware(thunk, logger),

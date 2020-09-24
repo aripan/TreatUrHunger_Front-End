@@ -1,7 +1,7 @@
 import React from "react";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
-import Form from "./FormComponent";
+import FormComponent from "./FormComponent";
 import Intro from "./IntroComponent";
 
 const Contact = (props) => {
@@ -82,7 +82,7 @@ const Contact = (props) => {
         </div>
       </div>
       <div className="row row-content">
-        <Form />
+        <FormComponent resetFeedbackForm={props.resetFeedbackForm} />
       </div>
     </div>
   );
