@@ -16,8 +16,18 @@ import {
   fetchComments,
   fetchPromos,
   fetchLeaders,
+  postFeedback,
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
+
+const mapStateToProps = (state) => {
+  return {
+    dishes: state.dishes,
+    comments: state.comments,
+    promotions: state.promotions,
+    leaders: state.leaders,
+  };
+};
 
 const mapDispatchToProps = (dispatch) => ({
   fetchPostComment: (dishId, rating, author, comment) =>
@@ -39,19 +49,14 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchLeaders());
   },
 
+  postFeedback: (feedback) => {
+    dispatch(postFeedback(feedback));
+  },
+
   resetFeedbackForm: () => {
     dispatch(actions.reset("feedback"));
   },
 });
-
-const mapStateToProps = (state) => {
-  return {
-    dishes: state.dishes,
-    comments: state.comments,
-    promotions: state.promotions,
-    leaders: state.leaders,
-  };
-};
 
 class Main extends Component {
   constructor() {
@@ -120,7 +125,7 @@ class Main extends Component {
         <Header />
         <div>
           <Switch>
-            <Route path="/favorites" component={Favorites} />
+            <Route exact path="/favorites" component={Favorites} />
             <Route path="/register" component={Register} />
             <Route path="/home" component={HomePage} />
             <Route
@@ -138,7 +143,10 @@ class Main extends Component {
               exact
               path="/contactus"
               component={() => (
-                <Contact resetFeedbackForm={this.props.resetFeedbackForm} />
+                <Contact
+                  resetFeedbackForm={this.props.resetFeedbackForm}
+                  postFeedback={this.props.postFeedback}
+                />
               )}
             />
             <Redirect to="/home" />

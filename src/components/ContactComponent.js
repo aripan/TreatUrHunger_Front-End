@@ -82,7 +82,10 @@ const Contact = (props) => {
         </div>
       </div>
       <div className="row row-content">
-        <FormComponent resetFeedbackForm={props.resetFeedbackForm} />
+        <FormComponent
+          resetFeedbackForm={props.resetFeedbackForm}
+          postFeedback={props.postFeedback}
+        />
       </div>
     </div>
   );
