@@ -10,12 +10,13 @@ import {
 import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 function RenderMenuItem({ dish }) {
   return (
     <Card>
       <Link to={`/menu/${dish.id}`}>
-        <CardImg width="100%" src={dish.image} alt={dish.name} />
+        <CardImg width="100%" src={baseUrl + dish.image} alt={dish.name} />
         <CardImgOverlay>
           <CardTitle className="dishName">{dish.name}</CardTitle>
         </CardImgOverlay>
@@ -62,6 +63,7 @@ const Menu = (props) => {
             </BreadcrumbItem>
             <BreadcrumbItem active>Menu</BreadcrumbItem>
           </Breadcrumb>
+
           <div className="col-12">
             <h3>Menu</h3>
             <hr />

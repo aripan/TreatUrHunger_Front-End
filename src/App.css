@@ -146,10 +146,16 @@ FooterComponent
 .footer {
   /* background-color: #d1c4e9; */
   background: linear-gradient(to right, #555353, #4a72a3);
-  margin: 0px auto;
+  margin: 0 auto 0 auto;
+
   padding: 20px 0px;
+
   color: #fff;
   font-family: "Righteous", cursive;
+
+  /* To keep the footer fixed at the bottom */
+
+  width: 100%;
 }
 
 .list-unstyled a,

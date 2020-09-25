@@ -34,7 +34,7 @@ class SubmitComment extends Component {
   }
 
   handleComment(values) {
-    this.props.addComment(
+    this.props.fetchPostComment(
       this.props.dishId,
       values.rating,
       values.author,

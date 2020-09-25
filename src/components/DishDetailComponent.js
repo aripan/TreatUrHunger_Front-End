@@ -12,12 +12,13 @@ import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
 import SubmitComment from "./SubmitCommentComponent";
 import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 
 const RenderDish = ({ itemDetails }) => {
   if (itemDetails) {
     return (
       <Card>
-        <CardImg top src={itemDetails.image} alt={itemDetails.name} />
+        <CardImg top src={baseUrl + itemDetails.image} alt={itemDetails.name} />
         <CardBody className="clickedItem ">
           <CardTitle>{itemDetails.name}</CardTitle>
           <CardText>{itemDetails.description}</CardText>
@@ -29,7 +30,7 @@ const RenderDish = ({ itemDetails }) => {
   }
 };
 
-const RenderComments = ({ comments, addComment, dishId }) => {
+const RenderComments = ({ comments, fetchPostComment, dishId }) => {
   if (comments != null) {
     return (
       <div>
@@ -62,7 +63,7 @@ const RenderComments = ({ comments, addComment, dishId }) => {
             );
           })}
         </ul>
-        <SubmitComment dishId={dishId} addComment={addComment} />
+        <SubmitComment dishId={dishId} fetchPostComment={fetchPostComment} />
       </div>
     );
   } else return <div></div>;
@@ -113,7 +114,7 @@ const DishDetail = (props) => {
                 because we have separated comments from dishes */}
             <RenderComments
               comments={props.comments}
-              addComment={props.addComment}
+              fetchPostComment={props.fetchPostComment}
               dishId={props.dish.id}
             />
           </div>
