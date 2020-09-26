@@ -51,12 +51,12 @@ const RenderComments = ({ comments, fetchPostComment, dishId }) => {
                   </p>
 
                   <p>
-                    -- {comment.author} ,{" "}
+                    -- {comment.author.firstName} {comment.author.lastName} ,{" "}
                     {new Intl.DateTimeFormat("en-US", {
                       year: "numeric",
                       month: "short",
                       day: "2-digit",
-                    }).format(new Date(Date.parse(comment.date)))}
+                    }).format(new Date(Date.parse(comment.updatedAt)))}
                   </p>
                 </li>
               </div>
@@ -115,7 +115,7 @@ const DishDetail = (props) => {
             <RenderComments
               comments={props.comments}
               fetchPostComment={props.fetchPostComment}
-              dishId={props.dish.id}
+              dishId={props.dish._id}
             />
           </div>
         </div>

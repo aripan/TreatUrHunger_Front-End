@@ -104,14 +104,14 @@ class Main extends Component {
           // DISHES
           dish={
             this.props.dishes.dishes.filter(
-              (dish) => dish.id === parseInt(match.params.dishId, 10)
+              (dish) => dish._id === match.params.dishId
             )[0]
           }
           isLoading={this.props.dishes.isLoading}
           errMess={this.props.dishes.errMess}
           // COMMENTS
           comments={this.props.comments.comments.filter(
-            (comment) => comment.dishId === parseInt(match.params.dishId, 10)
+            (comment) => comment.dish === match.params.dishId
           )}
           commentsErrMess={this.props.comments.errMess}
           // COMMENTS ON A DISH
