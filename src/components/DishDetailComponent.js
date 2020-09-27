@@ -4,9 +4,11 @@ import {
   CardImg,
   CardText,
   CardBody,
+  CardImgOverlay,
   CardTitle,
   Breadcrumb,
   BreadcrumbItem,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
@@ -14,11 +16,28 @@ import SubmitComment from "./SubmitCommentComponent";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 
-const RenderDish = ({ itemDetails }) => {
+const RenderDish = ({ itemDetails, favorite, postFavorite }) => {
   if (itemDetails) {
     return (
       <Card>
         <CardImg top src={baseUrl + itemDetails.image} alt={itemDetails.name} />
+        <CardImgOverlay>
+          <Button
+            outline
+            color="primary"
+            onClick={() =>
+              favorite
+                ? console.log("Already favorite")
+                : postFavorite(itemDetails._id)
+            }
+          >
+            {favorite ? (
+              <span className="fa fa-heart"></span>
+            ) : (
+              <span className="fa fa-heart-o"></span>
+            )}
+          </Button>
+        </CardImgOverlay>
         <CardBody className="clickedItem ">
           <CardTitle>{itemDetails.name}</CardTitle>
           <CardText>{itemDetails.description}</CardText>
@@ -107,7 +126,11 @@ const DishDetail = (props) => {
         </div>
         <div className="row m-2">
           <div className="col-12 col-md-5 m-1">
-            <RenderDish itemDetails={props.dish} />
+            <RenderDish
+              itemDetails={props.dish}
+              favorite={props.favorite}
+              postFavorite={props.postFavorite}
+            />
           </div>
           <div className="col-12 col-md-5 m-1 commentsOnDish">
             {/* Now writing props.comments is enough, 

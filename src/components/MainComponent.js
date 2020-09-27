@@ -17,6 +17,9 @@ import {
   fetchPromos,
   fetchLeaders,
   postFeedback,
+  fetchFavorites,
+  postFavorite,
+  deleteFavorite,
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 
@@ -26,6 +29,7 @@ const mapStateToProps = (state) => {
     comments: state.comments,
     promotions: state.promotions,
     leaders: state.leaders,
+    favorites: state.favorites,
   };
 };
 
@@ -56,6 +60,18 @@ const mapDispatchToProps = (dispatch) => ({
   resetFeedbackForm: () => {
     dispatch(actions.reset("feedback"));
   },
+
+  fetchFavorites: () => {
+    dispatch(fetchFavorites());
+  },
+
+  postFavorite: (dishId) => {
+    dispatch(postFavorite(dishId));
+  },
+
+  deleteFavorite: (dishId) => {
+    dispatch(deleteFavorite(dishId));
+  },
 });
 
 class Main extends Component {
@@ -69,6 +85,7 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
+    this.props.fetchFavorites();
   }
 
   render() {
@@ -116,6 +133,11 @@ class Main extends Component {
           commentsErrMess={this.props.comments.errMess}
           // COMMENTS ON A DISH
           fetchPostComment={this.props.fetchPostComment}
+          // FAVORITES
+          favorite={this.props.favorites?.favorites.dishes.some(
+            (dish) => dish._id === match.params.dishId
+          )}
+          postFavorite={this.props.postFavorite}
         />
       );
     };
@@ -125,7 +147,16 @@ class Main extends Component {
         <Header />
         <div>
           <Switch>
-            <Route exact path="/favorites" component={Favorites} />
+            <Route
+              exact
+              path="/favorites"
+              component={() => (
+                <Favorites
+                  favorites={this.props.favorites}
+                  deleteFavorite={this.props.deleteFavorite}
+                />
+              )}
+            />
             <Route path="/register" component={Register} />
             <Route path="/home" component={HomePage} />
             <Route
