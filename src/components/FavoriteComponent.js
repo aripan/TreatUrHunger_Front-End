@@ -5,7 +5,7 @@ import Intro from "./IntroComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
 
-function RenderFavoriteItem({ dish, deleteFavorite }) {
+function RenderMenuItem({ dish, deleteFavorite }) {
   return (
     <Media tag="li">
       <Media left middle>
@@ -23,31 +23,28 @@ function RenderFavoriteItem({ dish, deleteFavorite }) {
 }
 
 const Favorites = (props) => {
-  if (props.favorites) {
-    if (props.favorites.isLoading) {
-      return (
-        <div className="container">
-          <div className="row">
-            <Loading />
-          </div>
+  if (props.favorites?.isLoading) {
+    return (
+      <div className="container">
+        <div className="row">
+          <Loading />
         </div>
-      );
-    } else if (props.favorites.errMess) {
-      return (
-        <div className="container">
-          <div className="row">
-            <h4>{props.favorites.errMess}</h4>
-          </div>
+      </div>
+    );
+  } else if (props.favorites?.errMess) {
+    return (
+      <div className="container">
+        <div className="row">
+          <h4>{props.favorites.errMess}</h4>
         </div>
-      );
-    } else if (props.favorites.favorites != null) {
+      </div>
+    );
+  } else {
+    if (props.favorites?.favorites) {
       const favorites = props.favorites.favorites.dishes.map((dish) => {
         return (
           <div key={dish._id} className="col-12 mt-5">
-            <RenderFavoriteItem
-              dish={dish}
-              deleteFavorite={props.deleteFavorite}
-            />
+            <RenderMenuItem dish={dish} deleteFavorite={props.deleteFavorite} />
           </div>
         );
       });
@@ -56,7 +53,7 @@ const Favorites = (props) => {
         <div className="container">
           <div className="row">
             <Intro />
-            <Breadcrumb>
+            <Breadcrumb className="breadcrumb-fontStyle">
               <BreadcrumbItem>
                 <Link to="/home">Home</Link>
               </BreadcrumbItem>
@@ -68,7 +65,18 @@ const Favorites = (props) => {
             </div>
           </div>
           <div className="row">
-            <Media list>{favorites}</Media>
+            {favorites.length < 1 ? (
+              <div className="container">
+                <div className="row">
+                  <h4 className="m-5 favorites-row">
+                    You have deleted your favorites. Select again to make your
+                    list. &#x1F60A;
+                  </h4>
+                </div>
+              </div>
+            ) : (
+              <Media list>{favorites}</Media>
+            )}
           </div>
         </div>
       );
@@ -78,31 +86,13 @@ const Favorites = (props) => {
           <div className="row">
             <Intro />
             <h4 className="m-5 favorites-row">
-              You have no favorites. Please{" "}
-              <span>
-                <Link to="/register">Sign-in</Link>{" "}
-              </span>{" "}
-              to select your favorite items. &#x1F60A;
+              You have no favorites. To make a list, select your favorite items.
+              &#x1F60A;
             </h4>
           </div>
         </div>
       );
     }
-  } else {
-    return (
-      <div className="container">
-        <div className="row">
-          <Intro />
-          <h4 className="m-5 favorites-row">
-            You have no favorites. Please{" "}
-            <span>
-              <Link to="/register">Sign-in</Link>{" "}
-            </span>{" "}
-            to select your favorite items. &#x1F60A;
-          </h4>
-        </div>
-      </div>
-    );
   }
 };
 

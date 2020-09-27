@@ -21,6 +21,7 @@ class Login extends Component {
 
     this.toggleModal = this.toggleModal.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   toggleModal() {
@@ -34,29 +35,58 @@ class Login extends Component {
     if (this.username.value.length < 1 || this.password.value.length < 1) {
       alert("Insufficient Data");
     } else {
-      alert(
-        "Username: " +
-          JSON.stringify(this.username.value) +
-          " Password: " +
-          JSON.stringify(this.password.value) +
-          " Remember: " +
-          JSON.stringify(this.remember.checked)
-      );
+      this.props.loginUser({
+        username: this.username.value,
+        password: this.password.value,
+      });
       this.toggleModal();
     }
+  }
+
+  handleLogout() {
+    this.props.logoutUser();
   }
 
   render() {
     return (
       <React.Fragment>
-        {/* Login Button  */}
-        <Button
+        {/* Login Or Logout Button  */}
+        {!this.props.auth.isAuthenticated ? (
+          <Button
+            outline
+            onClick={this.toggleModal}
+            className="btn-outline-warning"
+          >
+            <span className="fa fa-sign-in fa-lg"></span> Login
+            {this.props.auth.isFetching ? (
+              <span className="fa fa-spinner fa-pulse fa-fw"></span>
+            ) : null}
+          </Button>
+        ) : (
+          <div>
+            <div className="navbar-text mr-3 text-white  font-weight-bold font-italic">
+              {this.props.auth.user ? this.props.auth.user.username : null}
+            </div>
+            <Button
+              outline
+              onClick={this.handleLogout}
+              className="btn-outline-warning"
+            >
+              <span className="fa fa-sign-out fa-lg"></span> Logout
+              {this.props.auth.isFetching ? (
+                <span className="fa fa-spinner fa-pulse fa-fw"></span>
+              ) : null}
+            </Button>
+          </div>
+        )}
+
+        {/* <Button
           outline
           onClick={this.toggleModal}
           className="btn-outline-warning"
         >
           <span className="fa fa-sign-in fa-lg"></span> Login
-        </Button>
+        </Button> */}
 
         {/* Login Modal */}
         <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>

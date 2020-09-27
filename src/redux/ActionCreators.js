@@ -86,22 +86,21 @@ export const addComments = (comments) => ({
 });
 
 // POSTING COMMENT ON A DISH
-export const fetchPostComment = (dishId, rating, author, comment) => (
-  dispatch
-) => {
+export const fetchPostComment = (dishId, rating, comment) => (dispatch) => {
   const newComment = {
-    dishId: dishId,
+    dish: dishId,
     rating: rating,
-    author: author,
     comment: comment,
   };
-  newComment.date = new Date().toISOString();
+
+  const bearer = "Bearer " + localStorage.getItem("token");
 
   return fetch(baseUrl + "comments", {
     method: "POST",
     body: JSON.stringify(newComment),
     headers: {
       "Content-Type": "application/json",
+      Authorization: bearer,
     },
     credentials: "same-origin",
   })
@@ -260,11 +259,14 @@ export const postFeedback = (feedback) => (dispatch) => {
 
 // FAVORITES
 export const postFavorite = (dishId) => (dispatch) => {
+  const bearer = "Bearer " + localStorage.getItem("token");
+
   return fetch(baseUrl + "favorites/" + dishId, {
     method: "POST",
     body: JSON.stringify({ _id: dishId }),
     headers: {
       "Content-Type": "application/json",
+      Authorization: bearer,
     },
     credentials: "same-origin",
   })
@@ -293,9 +295,13 @@ export const postFavorite = (dishId) => (dispatch) => {
 };
 
 export const deleteFavorite = (dishId) => (dispatch) => {
+  const bearer = "Bearer " + localStorage.getItem("token");
+
   return fetch(baseUrl + "favorites/" + dishId, {
     method: "DELETE",
-
+    headers: {
+      Authorization: bearer,
+    },
     credentials: "same-origin",
   })
     .then(
@@ -325,7 +331,13 @@ export const deleteFavorite = (dishId) => (dispatch) => {
 export const fetchFavorites = () => (dispatch) => {
   dispatch(favoritesLoading(true));
 
-  return fetch(baseUrl + "favorites")
+  const bearer = "Bearer " + localStorage.getItem("token");
+
+  return fetch(baseUrl + "favorites", {
+    headers: {
+      Authorization: bearer,
+    },
+  })
     .then(
       (response) => {
         if (response.ok) {
@@ -361,3 +373,91 @@ export const addFavorites = (favorites) => ({
   type: ActionTypes.ADD_FAVORITES,
   payload: favorites,
 });
+
+// LOGIN
+export const loginUser = (creds) => (dispatch) => {
+  // We dispatch requestLogin to kickoff the call to the API
+  dispatch(requestLogin(creds));
+
+  return fetch(baseUrl + "users/login", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        // If login was successful, set the token in local storage
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("creds", JSON.stringify(creds));
+        // Dispatch the success action
+        dispatch(fetchFavorites());
+        dispatch(receiveLogin(response));
+      } else {
+        let error = new Error("Error " + response.status);
+        error.response = response;
+        throw error;
+      }
+    })
+    .catch((error) => dispatch(loginError(error.message)));
+};
+
+export const requestLogin = (creds) => {
+  return {
+    type: ActionTypes.LOGIN_REQUEST,
+    creds,
+  };
+};
+
+export const receiveLogin = (response) => {
+  return {
+    type: ActionTypes.LOGIN_SUCCESS,
+    token: response.token,
+  };
+};
+
+export const loginError = (message) => {
+  return {
+    type: ActionTypes.LOGIN_FAILURE,
+    message,
+  };
+};
+
+// LOGOUT
+export const logoutUser = () => (dispatch) => {
+  dispatch(requestLogout());
+  localStorage.removeItem("token");
+  localStorage.removeItem("creds");
+  dispatch(favoritesFailed("Error 401: Unauthorized"));
+  dispatch(receiveLogout());
+};
+
+export const requestLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_REQUEST,
+  };
+};
+
+export const receiveLogout = () => {
+  return {
+    type: ActionTypes.LOGOUT_SUCCESS,
+  };
+};

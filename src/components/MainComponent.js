@@ -20,6 +20,8 @@ import {
   fetchFavorites,
   postFavorite,
   deleteFavorite,
+  loginUser,
+  logoutUser,
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 
@@ -30,12 +32,13 @@ const mapStateToProps = (state) => {
     promotions: state.promotions,
     leaders: state.leaders,
     favorites: state.favorites,
+    auth: state.auth,
   };
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchPostComment: (dishId, rating, author, comment) =>
-    dispatch(fetchPostComment(dishId, rating, author, comment)),
+  fetchPostComment: (dishId, rating, comment) =>
+    dispatch(fetchPostComment(dishId, rating, comment)),
 
   fetchDishes: () => {
     dispatch(fetchDishes());
@@ -72,13 +75,21 @@ const mapDispatchToProps = (dispatch) => ({
   deleteFavorite: (dishId) => {
     dispatch(deleteFavorite(dishId));
   },
+
+  loginUser: (creds) => {
+    dispatch(loginUser(creds));
+  },
+
+  logoutUser: () => {
+    dispatch(logoutUser());
+  },
 });
 
 class Main extends Component {
-  constructor() {
-    super();
-    this.state = {};
-  }
+  // constructor() {
+  //   super();
+  //   this.state = {};
+  // }
 
   componentDidMount() {
     this.props.fetchDishes();
@@ -117,46 +128,82 @@ class Main extends Component {
     // To specify the chosen specific dish
     const DishWithId = ({ match }) => {
       return (
-        <DishDetail
-          // DISHES
-          dish={
-            this.props.dishes.dishes.filter(
+        // CHECKING AUTHENTICATION OF THE USER
+        this.props.auth.isAuthenticated ? (
+          <DishDetail
+            // DISHES
+            dish={
+              this.props.dishes.dishes.filter(
+                (dish) => dish._id === match.params.dishId
+              )[0]
+            }
+            isLoading={this.props.dishes.isLoading}
+            errMess={this.props.dishes.errMess}
+            // COMMENTS
+            comments={this.props.comments.comments.filter(
+              (comment) => comment.dish === match.params.dishId
+            )}
+            commentsErrMess={this.props.comments.errMess}
+            // COMMENTS ON A DISH
+            fetchPostComment={this.props.fetchPostComment}
+            // FAVORITES
+            favorite={this.props.favorites.favorites?.dishes.some(
               (dish) => dish._id === match.params.dishId
-            )[0]
-          }
-          isLoading={this.props.dishes.isLoading}
-          errMess={this.props.dishes.errMess}
-          // COMMENTS
-          comments={this.props.comments.comments.filter(
-            (comment) => comment.dish === match.params.dishId
-          )}
-          commentsErrMess={this.props.comments.errMess}
-          // COMMENTS ON A DISH
-          fetchPostComment={this.props.fetchPostComment}
-          // FAVORITES
-          favorite={this.props.favorites?.favorites.dishes.some(
-            (dish) => dish._id === match.params.dishId
-          )}
-          postFavorite={this.props.postFavorite}
-        />
+            )}
+            postFavorite={this.props.postFavorite}
+          />
+        ) : (
+          <DishDetail
+            // DISHES
+            dish={
+              this.props.dishes.dishes.filter(
+                (dish) => dish._id === match.params.dishId
+              )[0]
+            }
+            isLoading={this.props.dishes.isLoading}
+            errMess={this.props.dishes.errMess}
+            // COMMENTS
+            comments={this.props.comments.comments.filter(
+              (comment) => comment.dish === match.params.dishId
+            )}
+            commentsErrMess={this.props.comments.errMess}
+            // COMMENTS ON A DISH
+            fetchPostComment={this.props.fetchPostComment}
+            // FAVORITES
+            favorite={false}
+            postFavorite={this.props.postFavorite}
+          />
+        )
       );
     };
 
+    const PrivateRoute = ({ component: Component, ...rest }) => (
+      <Route
+        {...rest}
+        render={(props) =>
+          this.props.auth.isAuthenticated ? (
+            <Component {...props} />
+          ) : (
+            <Redirect
+              to={{
+                pathname: "/home",
+                state: { from: props.location },
+              }}
+            />
+          )
+        }
+      />
+    );
+
     return (
       <div>
-        <Header />
+        <Header
+          auth={this.props.auth}
+          loginUser={this.props.loginUser}
+          logoutUser={this.props.logoutUser}
+        />
         <div>
           <Switch>
-            <Route
-              exact
-              path="/favorites"
-              component={() => (
-                <Favorites
-                  favorites={this.props.favorites}
-                  deleteFavorite={this.props.deleteFavorite}
-                />
-              )}
-            />
             <Route path="/register" component={Register} />
             <Route path="/home" component={HomePage} />
             <Route
@@ -170,6 +217,16 @@ class Main extends Component {
               component={() => <Menu dishes={this.props.dishes} />}
             />
             <Route path="/menu/:dishId" component={DishWithId} />
+            <PrivateRoute
+              exact
+              path="/favorites"
+              component={() => (
+                <Favorites
+                  favorites={this.props.favorites}
+                  deleteFavorite={this.props.deleteFavorite}
+                />
+              )}
+            />
             <Route
               exact
               path="/contactus"

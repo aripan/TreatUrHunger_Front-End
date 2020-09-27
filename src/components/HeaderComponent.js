@@ -71,11 +71,15 @@ class Header extends Component {
                 </NavItem>
               </Nav>
 
-              {/* BUTTON FOR LOGIN MODAL */}
+              {/* BUTTONs FOR LOGIN & LOGOUT MODAL */}
               <Nav className="ml-auto" navbar>
                 <NavItem>
                   {/* Login Component */}
-                  <Login />
+                  <Login
+                    auth={this.props.auth}
+                    loginUser={this.props.loginUser}
+                    logoutUser={this.props.logoutUser}
+                  />
                 </NavItem>
               </Nav>
             </Collapse>

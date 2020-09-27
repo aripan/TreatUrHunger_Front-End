@@ -37,7 +37,6 @@ class SubmitComment extends Component {
     this.props.fetchPostComment(
       this.props.dishId,
       values.rating,
-      values.author,
       values.comment
     );
     // alert(
@@ -101,7 +100,7 @@ class SubmitComment extends Component {
                   />
                 </Col>
               </Row>
-              <Row className="form-group">
+              {/* <Row className="form-group">
                 <Label htmlFor="author" md={3}>
                   Your Name
                 </Label>
@@ -128,7 +127,7 @@ class SubmitComment extends Component {
                     }}
                   />
                 </Col>
-              </Row>
+              </Row> */}
               <Row className="form-group">
                 <Label htmlFor="comment" md={3}>
                   Comment
