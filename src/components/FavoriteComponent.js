@@ -1,9 +1,9 @@
 import React from "react";
-import { Media, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
-import { Link } from "react-router-dom";
 import Intro from "./IntroComponent";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
+import { Media, Breadcrumb, BreadcrumbItem, Button } from "reactstrap";
+import { Link } from "react-router-dom";
 
 function RenderMenuItem({ dish, deleteFavorite }) {
   return (

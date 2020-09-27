@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 
-function Register() {
+function Register(props) {
   const history = useHistory();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -18,7 +18,13 @@ function Register() {
     ) {
       alert("SORRY!, Insufficient Data");
     } else {
-      alert("Username: " + username + " Password: " + password);
+      // alert("Username: " + username + " Password: " + password);
+      props.registerUser({
+        firstName,
+        lastName,
+        username,
+        password,
+      });
       history.push("/");
     }
   };

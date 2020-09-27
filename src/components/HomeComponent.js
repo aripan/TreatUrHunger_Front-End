@@ -1,4 +1,7 @@
 import React from "react";
+import Intro from "./IntroComponent";
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 import {
   Card,
   CardImg,
@@ -7,9 +10,6 @@ import {
   CardTitle,
   CardSubtitle,
 } from "reactstrap";
-import Intro from "./IntroComponent";
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
 
 function RenderCard({ item, isLoading, errMess }) {
   if (isLoading) {

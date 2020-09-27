@@ -22,6 +22,7 @@ import {
   deleteFavorite,
   loginUser,
   logoutUser,
+  registerUser,
 } from "../redux/ActionCreators";
 import { actions } from "react-redux-form";
 
@@ -74,6 +75,10 @@ const mapDispatchToProps = (dispatch) => ({
 
   deleteFavorite: (dishId) => {
     dispatch(deleteFavorite(dishId));
+  },
+
+  registerUser: (creds) => {
+    dispatch(registerUser(creds));
   },
 
   loginUser: (creds) => {
@@ -184,12 +189,15 @@ class Main extends Component {
           this.props.auth.isAuthenticated ? (
             <Component {...props} />
           ) : (
-            <Redirect
-              to={{
-                pathname: "/home",
-                state: { from: props.location },
-              }}
-            />
+            (alert("Please Log-In to select your favorite items."),
+            (
+              <Redirect
+                to={{
+                  pathname: "/home",
+                  state: { from: props.location },
+                }}
+              />
+            ))
           )
         }
       />
@@ -204,7 +212,15 @@ class Main extends Component {
         />
         <div>
           <Switch>
-            <Route path="/register" component={Register} />
+            <Route
+              path="/register"
+              component={() => (
+                <Register
+                  auth={this.props.auth}
+                  registerUser={this.props.registerUser}
+                />
+              )}
+            />
             <Route path="/home" component={HomePage} />
             <Route
               exact

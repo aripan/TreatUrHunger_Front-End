@@ -1,4 +1,4 @@
-import * as ActionTypes from "./ActionTypes";
+import * as ActionTypes from "../ActionTypes";
 
 export const Comments = (state = { errMess: null, comments: [] }, action) => {
   switch (action.type) {
@@ -8,6 +8,7 @@ export const Comments = (state = { errMess: null, comments: [] }, action) => {
     case ActionTypes.COMMENTS_FAILED:
       return { ...state, errMess: action.payload, comments: [] };
 
+    // POSTING COMMENT ON A DISH
     case ActionTypes.ADD_COMMENT:
       let comment = action.payload;
 

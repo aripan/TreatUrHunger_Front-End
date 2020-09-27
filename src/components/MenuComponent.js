@@ -1,4 +1,7 @@
 import React from "react";
+import Intro from "./IntroComponent";
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 import {
   Card,
   CardImg,
@@ -8,9 +11,6 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import Intro from "./IntroComponent";
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
 
 function RenderMenuItem({ dish }) {
   return (

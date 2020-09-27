@@ -2,10 +2,21 @@ import * as ActionTypes from "./ActionTypes";
 // To communicate with the server
 import { baseUrl } from "../shared/baseUrl";
 
-// HERE APPLYING REDUX THUNK
-// fetchDishes, fetchComments, fetchPostComment fetchPromos, fetchLeaders are thunk
+// HERE APPLYING REDUX THUNK. Following functions are thunk
+// fetchDishes
+// fetchComments
+// fetchPostComment
+// fetchPromos
+// fetchLeaders
+// postFeedback
+// postFavorite
+// deleteFavorite
+// fetchFavorites
+// registerUser
+// loginUser
+// logoutUser
 
-//DISHES
+// ACTION CREATORS FOR DISHES
 export const fetchDishes = () => (dispatch) => {
   dispatch(dishesLoading(true));
 
@@ -48,7 +59,7 @@ export const addDishes = (dishes) => ({
   payload: dishes,
 });
 
-//COMMENTS
+// ACTION CREATORS FOR COMMENTS
 export const fetchComments = () => (dispatch) => {
   return fetch(baseUrl + "comments")
     .then(
@@ -125,7 +136,7 @@ export const fetchPostComment = (dishId, rating, comment) => (dispatch) => {
     .then((response) => dispatch(addComment(response)))
     .catch((error) => {
       console.log("post comments", error.message);
-      alert("Your comment could not be posted\nError: " + error.message);
+      alert("Your comment could not be posted\n" + error.message);
     });
 };
 
@@ -134,7 +145,7 @@ export const addComment = (comment) => ({
   payload: comment,
 });
 
-//PROMOTIONS
+// ACTION CREATORS FOR PROMOTIONS
 export const fetchPromos = () => (dispatch) => {
   dispatch(promosLoading(true));
 
@@ -177,7 +188,7 @@ export const addPromos = (promos) => ({
   payload: promos,
 });
 
-// LEADERS
+// ACTION CREATORS FOR LEADERS
 export const fetchLeaders = () => (dispatch) => {
   dispatch(leadersLoading(true));
 
@@ -218,7 +229,7 @@ export const addLeaders = (leaders) => ({
   payload: leaders,
 });
 
-// FEEDBACK
+// ACTION CREATORS FOR FEEDBACK
 // POST A FEEDBACK TO THE SERVER
 export const postFeedback = (feedback) => (dispatch) => {
   return fetch(baseUrl + "feedback", {
@@ -257,7 +268,7 @@ export const postFeedback = (feedback) => (dispatch) => {
     });
 };
 
-// FAVORITES
+// ACTION CREATORS FOR FAVORITES
 export const postFavorite = (dishId) => (dispatch) => {
   const bearer = "Bearer " + localStorage.getItem("token");
 
@@ -374,7 +385,74 @@ export const addFavorites = (favorites) => ({
   payload: favorites,
 });
 
-// LOGIN
+// ACTION CREATORS FOR REGISTRATION
+export const registerUser = (creds) => (dispatch) => {
+  // We dispatch requestRegistration to kickoff the call to the API
+  dispatch(requestRegistration(creds));
+
+  return fetch(baseUrl + "users/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(creds),
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          let error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .then((response) => {
+      if (response.success) {
+        // If login was successful, set the token in local storage
+        localStorage.setItem("token", response.token);
+        localStorage.setItem("creds", JSON.stringify(creds));
+        // Dispatch the success action
+        dispatch(fetchFavorites());
+        dispatch(receiveRegistration(response));
+      } else {
+        let error = new Error("Error " + response.status);
+        error.response = response;
+        throw error;
+      }
+    })
+    .catch((error) => dispatch(registrationError(error.message)));
+};
+
+export const requestRegistration = (creds) => {
+  return {
+    type: ActionTypes.REGISTRATION_REQUEST,
+    creds,
+  };
+};
+
+export const receiveRegistration = (response) => {
+  return {
+    type: ActionTypes.REGISTRATION_SUCCESS,
+    token: response.token,
+  };
+};
+
+export const registrationError = (message) => {
+  return {
+    type: ActionTypes.REGISTRATION_FAILURE,
+    message,
+  };
+};
+
+// ACTION CREATORS FOR LOGIN
 export const loginUser = (creds) => (dispatch) => {
   // We dispatch requestLogin to kickoff the call to the API
   dispatch(requestLogin(creds));
@@ -441,7 +519,7 @@ export const loginError = (message) => {
   };
 };
 
-// LOGOUT
+// ACTION CREATORS FOR LOGOUT
 export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout());
   localStorage.removeItem("token");

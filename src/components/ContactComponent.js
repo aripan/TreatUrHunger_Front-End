@@ -1,8 +1,8 @@
 import React from "react";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
-import { Link } from "react-router-dom";
 import FormComponent from "./FormComponent";
 import Intro from "./IntroComponent";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { Link } from "react-router-dom";
 
 const Contact = (props) => {
   return (

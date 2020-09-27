@@ -1,5 +1,7 @@
 import React from "react";
 import Intro from "./IntroComponent";
+import { Loading } from "./LoadingComponent";
+import { baseUrl } from "../shared/baseUrl";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -9,8 +11,6 @@ import {
   Media,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-import { Loading } from "./LoadingComponent";
-import { baseUrl } from "../shared/baseUrl";
 
 const RenderLeader = ({ leader }) => {
   return (

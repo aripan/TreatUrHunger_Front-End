@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Login from "./LoginComponent";
 import {
   Navbar,
   NavbarBrand,
@@ -8,7 +9,6 @@ import {
   NavItem,
 } from "reactstrap";
 import { NavLink } from "react-router-dom";
-import Login from "./LoginComponent";
 
 class Header extends Component {
   constructor() {
