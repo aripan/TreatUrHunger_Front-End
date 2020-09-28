@@ -21,6 +21,8 @@ const RenderLeader = ({ leader }) => {
           src={baseUrl + leader.image}
           alt={leader.name}
           className="mr-4"
+          width="100"
+          height="100"
         />
       </Media>
       <Media body>
@@ -77,14 +79,14 @@ const About = (props) => {
             Started in 2019, Treat Ur Hunger quickly established itself as a
             culinary icon par excellence in Germany. With its unique brand of
             world fusion cuisine that can be found nowhere else, it enjoys
-            patronage from the A-list clientele in Hong Kong. Featuring four of
+            patronage from the A-list clientele in Germany. Featuring four of
             the best three-star Michelin chefs in the world, you never know what
             will arrive on your plate the next time you visit us.
           </p>
           <p>
             The restaurant traces its humble beginnings to{" "}
-            <em>The Frying Pan</em>, a successful chain started by our CEO, Mr.
-            Peter Pan, that featured for the first time the world's best
+            <em>The Frying Pan</em>, a successful chain started by our CEO, Ms.
+            Maria Pan, that featured for the first time the world's best
             cuisines in a pan.
           </p>
         </div>
@@ -100,9 +102,9 @@ const About = (props) => {
                 <dt className="col-6">Major Stake Holder</dt>
                 <dd className="col-6">Fake Foods Inc.</dd>
                 <dt className="col-6">Last Year's Turnover</dt>
-                <dd className="col-6">$ 68,375</dd>
+                <dd className="col-6">€ 48.375,00 </dd>
                 <dt className="col-6">Employees</dt>
-                <dd className="col-6">20</dd>
+                <dd className="col-6">10</dd>
               </dl>
             </CardBody>
           </Card>

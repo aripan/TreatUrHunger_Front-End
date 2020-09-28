@@ -1,5 +1,6 @@
 import React from "react";
 import Intro from "./IntroComponent";
+import Carousel from "./CarouselComponent";
 import { Loading } from "./LoadingComponent";
 import { baseUrl } from "../shared/baseUrl";
 import {
@@ -38,6 +39,10 @@ const Home = (props) => {
   return (
     <div className="container">
       <Intro />
+      <div className="mt-2">
+        <Carousel />
+      </div>
+
       <div className="row align-items-start mt-2 mb-2">
         <div className="col-12 col-md m-1">
           <RenderCard

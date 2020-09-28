@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Login from "./LoginComponent";
+import Reservation from "./ReservationComponent";
 import {
   Navbar,
   NavbarBrand,
@@ -35,7 +36,7 @@ class Header extends Component {
             <NavbarToggler onClick={this.toggleNav} />
             <NavbarBrand className="mr-auto" href="/">
               <img
-                src="assets/images/logo.png"
+                src="assets/images/logo1.png"
                 height="50"
                 width="50"
                 alt="Treat Ur Hunger"
@@ -81,6 +82,14 @@ class Header extends Component {
                     logoutUser={this.props.logoutUser}
                   />
                 </NavItem>
+
+                {/* Reservation is shown only if one is not Logged-In */}
+                {this.props.auth.isAuthenticated ? null : (
+                  <NavItem>
+                    {/* Reserve Component */}
+                    <Reservation />
+                  </NavItem>
+                )}
               </Nav>
             </Collapse>
           </div>

@@ -40,6 +40,8 @@ const RenderDish = ({ itemDetails, favorite, postFavorite }) => {
         </CardImgOverlay>
         <CardBody className="clickedItem ">
           <CardTitle>{itemDetails.name}</CardTitle>
+          <CardText>Category: {itemDetails.category}</CardText>
+          <CardText>price: {itemDetails.price / 100} &euro;</CardText>
           <CardText>{itemDetails.description}</CardText>
         </CardBody>
       </Card>
@@ -69,7 +71,7 @@ const RenderComments = ({ comments, fetchPostComment, dishId }) => {
                       ))}
                   </p>
 
-                  <p>
+                  <p className="text-right">
                     -- {comment.author.firstName} {comment.author.lastName} ,{" "}
                     {new Intl.DateTimeFormat("en-US", {
                       year: "numeric",

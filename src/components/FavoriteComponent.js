@@ -9,11 +9,17 @@ function RenderMenuItem({ dish, deleteFavorite }) {
   return (
     <Media tag="li">
       <Media left middle>
-        <Media object src={baseUrl + dish.image} alt={dish.name} />
+        <Media
+          object
+          src={baseUrl + dish.image}
+          alt={dish.name}
+          width="100"
+          height="100"
+        />
       </Media>
       <Media body className="ml-5">
         <Media heading>{dish.name}</Media>
-        <p>{dish.description}</p>
+        <p className="text-justify">{dish.description}</p>
         <Button outline color="danger" onClick={() => deleteFavorite(dish._id)}>
           <span className="fa fa-times"></span>
         </Button>
@@ -69,7 +75,11 @@ const Favorites = (props) => {
               <div className="container">
                 <div className="row">
                   <h4 className="m-5 favorites-row">
-                    You have deleted your favorites. Select again to make your
+                    Hey,{" "}
+                    <span className="text-primary">
+                      {props.auth.user.username}
+                    </span>{" "}
+                    you have deleted your favorites. Select again to make your
                     list. &#x1F60A;
                   </h4>
                 </div>
@@ -86,7 +96,9 @@ const Favorites = (props) => {
           <div className="row">
             <Intro />
             <h4 className="m-5 favorites-row">
-              You have no favorites. To make a list, select your favorite items.
+              Hey,{" "}
+              <span className="text-primary">{props.auth.user.username}</span>{" "}
+              you have no favorites. To make a list, select your favorite items.
               &#x1F60A;
             </h4>
           </div>

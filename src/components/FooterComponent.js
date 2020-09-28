@@ -19,6 +19,9 @@ function Footer(props) {
                 <Link to="/menu">Menu</Link>
               </li>
               <li>
+                <Link to="/favorites">My favorites</Link>
+              </li>
+              <li>
                 <Link to="/contactus">Contact us</Link>
               </li>
             </ul>

@@ -238,6 +238,7 @@ class Main extends Component {
               path="/favorites"
               component={() => (
                 <Favorites
+                  auth={this.props.auth}
                   favorites={this.props.favorites}
                   deleteFavorite={this.props.deleteFavorite}
                 />
