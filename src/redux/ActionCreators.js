@@ -232,7 +232,7 @@ export const addLeaders = (leaders) => ({
 // ACTION CREATORS FOR FEEDBACK
 // POST A FEEDBACK TO THE SERVER
 export const postFeedback = (feedback) => (dispatch) => {
-  return fetch(baseUrl + "feedback", {
+  return fetch(baseUrl + "users/feedback", {
     method: "POST",
     body: JSON.stringify(feedback),
     headers: {
@@ -260,7 +260,9 @@ export const postFeedback = (feedback) => (dispatch) => {
     .then((response) => response.json())
     .then((response) => {
       console.log("Feedback", response);
-      alert("Thank you for your feedback!\n" + JSON.stringify(response));
+      dispatch(addFeedback(response));
+      alert(`Thank you for your feedback, ${response.firstName} ${response.lastName}!
+      Hope to see you again!`);
     })
     .catch((error) => {
       console.log("Feedback", error.message);
@@ -268,6 +270,10 @@ export const postFeedback = (feedback) => (dispatch) => {
     });
 };
 
+export const addFeedback = (feedback) => ({
+  type: ActionTypes.ADD_FEEDBACK,
+  payload: feedback,
+});
 // ACTION CREATORS FOR FAVORITES
 export const postFavorite = (dishId) => (dispatch) => {
   const bearer = "Bearer " + localStorage.getItem("token");

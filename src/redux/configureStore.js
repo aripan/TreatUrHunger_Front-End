@@ -6,7 +6,7 @@ import { Promotions } from "./Reducer/promotionReducer";
 import { Leaders } from "./Reducer/leaderReducer";
 import { Favorites } from "./Reducer/favoriteReducer";
 import { Auth } from "./Reducer/authReducer";
-import { InitialFeedback } from "./Reducer/forms";
+import { Initial } from "./Reducer/formReducer";
 // MIDDLEWARE
 import thunk from "redux-thunk";
 import logger from "redux-logger";
@@ -22,7 +22,7 @@ export const ConfigureStore = () => {
       favorites: Favorites,
       auth: Auth,
       ...createForms({
-        feedback: InitialFeedback,
+        feedback: Initial,
       }),
     }),
     compose(
