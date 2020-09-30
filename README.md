@@ -18,9 +18,9 @@ A full-stack web application is built for a restaurant using the (MERN) stack.
 
 ## Tech Stack
 
-Front-end: React
-Back-end: Node JS
-Database: MongoDB
+- Front-end: React
+- Back-end: Node JS
+- Database: MongoDB
 
 ## Backend Frameworks
 
@@ -39,7 +39,10 @@ The latest version is deployed and hosted on Heroku. Check it out by clicking [H
 
 ## Usage
 
-You can login using the following credentials: - Email: abc@def.com - Password: password
+You can login using the following credentials:
+
+- Email: abc@def.com
+- Password: password
 
 Or you can Register using a fake email/password.
 
