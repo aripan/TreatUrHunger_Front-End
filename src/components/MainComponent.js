@@ -255,7 +255,7 @@ class Main extends Component {
                 />
               )}
             />
-            <Redirect to="/" />
+            <Redirect to="/home" />
           </Switch>
         </div>
 
