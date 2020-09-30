@@ -213,6 +213,7 @@ class Main extends Component {
         <div>
           <Switch>
             <Route
+              exact
               path="/register"
               component={() => (
                 <Register
@@ -254,7 +255,7 @@ class Main extends Component {
                 />
               )}
             />
-            <Redirect to="/home" />
+            <Redirect to="/" />
           </Switch>
         </div>
 
