@@ -41,10 +41,10 @@ The latest version is deployed and hosted on Heroku. Check it out by clicking [H
 
 You can login using the following credentials:
 
-- Email: test@gmail.com
+- Username: testUser
 - Password: password
 
-Or you can Register using a fake email/password.
+Or you can Register a new account.
 
 ## Notes
 
@@ -53,8 +53,6 @@ Or you can Register using a fake email/password.
 2. Passwords are hashed once received by the backend.
 
 3. Despite 1 and 2, I'd still recommend using a fake/weak password to avoid any potential future attacks.
-
-4. Emails aren't verified, so you can use any email even if it's fake.
 
 ## Last but not least
 
